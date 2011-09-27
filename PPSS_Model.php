@@ -18,7 +18,7 @@ class PPSS_Model extends PW_Model
     return array(
       'post_types' => array(
 				'label' => 'Allow Per Post Scripts & Styles For The Following Post Types:',
-				'default' => array('post', 'pages'),
+				'default' => array('post', 'page'),
 				'options' => $this->_post_types,
 			),
 			'on' => array(
