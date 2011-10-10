@@ -5,40 +5,40 @@ class PPSS_Controller extends PW_ModelController
   // store a list of all the extras from all posts to print at the end of the header
   protected $_extras;
   
-	public function __construct()
-	{
-		// these two properties need to be set before parent::__construct() is called
-		$this->_plugin_dir = plugin_basename( dirname(__FILE__) );
-		$this->_plugin_file = plugin_basename( dirname(__FILE__) . '/per-post-scripts-and-styles.php' );
-				
-		parent::__construct();
+  public function __construct()
+  {
+    // these two properties need to be set before parent::__construct() is called
+    $this->_plugin_dir = plugin_basename( dirname(__FILE__) );
+    $this->_plugin_file = plugin_basename( dirname(__FILE__) . '/per-post-scripts-and-styles.php' );
+        
+    parent::__construct();
     add_action( 'add_meta_boxes', array($this, 'add_meta_boxes') );
     add_action( 'save_post', array($this, 'save_meta_box_data') );
     add_action( 'wp_enqueue_scripts', array($this, 'add_scripts_and_styles') );
     add_action( 'wp_head', array($this, 'print_script_and_style_extras') );
-	}
-	
-	public function add_scripts_and_styles()
-	{
-	  global $posts, $post;
-	  $options = $this->model->option;
-	  
-	  // if we're on a single page, just check the first post
-	  if ( is_single() ) {
-	    $this->load_scripts_and_styles_for_post($post->ID);
-	  } else if ( is_home() && $options['on'] === 'home' ) {
-	    foreach($posts as $p) {
-	      $this->load_scripts_and_styles_for_post($p->ID);
-	    }
-	  } else if ( $options['on'] === 'all' ) {
-	    foreach($posts as $p) {
-	      $this->load_scripts_and_styles_for_post($p->ID);
-	    }
-	  }
-	}
-	
-	public function load_scripts_and_styles_for_post( $post_id ) {
-	  $header_scripts = get_post_meta( $post_id, '_ppss_header_scripts', true);
+  } 
+  
+  public function add_scripts_and_styles()
+  {
+    global $posts, $post;
+    $options = $this->model->option;
+    
+    // if we're on a single page, just check the first post
+    if ( is_single() ) {
+      $this->load_scripts_and_styles_for_post($post->ID);
+    } else if ( is_home() && $options['on'] === 'home' ) {
+      foreach($posts as $p) {
+        $this->load_scripts_and_styles_for_post($p->ID);
+      }
+    } else if ( $options['on'] === 'all' ) {
+      foreach($posts as $p) {
+        $this->load_scripts_and_styles_for_post($p->ID);
+      }
+    }
+  }
+  
+  public function load_scripts_and_styles_for_post( $post_id ) {
+    $header_scripts = get_post_meta( $post_id, '_ppss_header_scripts', true);
     $footer_styles = get_post_meta( $post_id, '_ppss_footer_scripts', true);
     $styles = get_post_meta( $post_id, '_ppss_styles', true);
     $extras = get_post_meta( $post_id, '_ppss_extras', true);
@@ -60,10 +60,10 @@ class PPSS_Controller extends PW_ModelController
     }
     
     $this->_extras .= $extras;
-	}
-	
-	public function process_url_to_script_array($url, $in_footer) {
-	  $url = trim($url);
+  }
+  
+  public function process_url_to_script_array($url, $in_footer) {
+    $url = trim($url);
     
     // extract any dependencies and store in an array
     $dependencies = array();
@@ -76,18 +76,18 @@ class PPSS_Controller extends PW_ModelController
     
     $url = str_replace( array('%SITE_URL%', '%THEME_URL%'), array(site_url(), get_template_directory_uri()), $url);
     $this->_scripts[] = array( md5($url), $url, $dependencies, false, $in_footer ); 
-	}
-	
-	public function print_script_and_style_extras() {
-	  echo $this->_extras;
-	}
-	
+  }
+  
+  public function print_script_and_style_extras() {
+    echo $this->_extras;
+  }
+  
   // Add meta box as a custom write panel
   public function add_meta_boxes()
   {
-  	foreach ( $this->model->post_types as $post_type=>$post_name ) { // get all post types
-  		add_meta_box('ppss', 'Per Post Scripts & Styles', array($this, 'print_meta_box'), $post_type, 'normal', 'default');
-  	}
+    foreach ( $this->model->option['post_types'] as $post_type ) { // get all post types
+      add_meta_box('ppss', 'Per Post Scripts & Styles', array($this, 'print_meta_box'), $post_type, 'normal', 'default');
+    }
   }
   
   // Meta box content
