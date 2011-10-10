@@ -3,7 +3,7 @@
  * Plugin Name: Per Post Scripts & Styles
  * Plugin URI: http://philipwalton.com
  * Description: Add specific scripts and stylesheets to posts, pages, and custom post types.
- * Version: 1.0
+ * Version: 1.0.1
  * Author: Philip Walton
  * Author URI: http://philipwalton.com
  */
