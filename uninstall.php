@@ -15,6 +15,7 @@
     delete_post_meta($postinfo->ID, '_ppss_footer_scripts');
     delete_post_meta($postinfo->ID, '_ppss_styles');
     delete_post_meta($postinfo->ID, '_ppss_extras');
+    delete_post_meta($postinfo->ID, '_ppss_footer_extras');
   }
 	
 ?>

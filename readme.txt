@@ -2,8 +2,8 @@
 Contributors: philipwalton
 Tags: Javascript, CSS, script, stylesheet, post
 Requires at least: 3.0
-Tested up to: 3.2.1
-Stable tag: 1.0.1
+Tested up to: 3.3
+Stable tag: 1.1
 
 Properly and safely add specific Javascript and CSS stylesheets to single posts, pages, and custom post types.
 
@@ -30,9 +30,13 @@ For complete documentation, visit [philipwalton.com](http://philipwalton.com/201
 
 == Changelog ==
 
+= 1.1 =
+* Added the ability to include a footer script block
+* Added support for WordPress 3.3
+* Added support for child themes
+
 = 1.0.1 =
 * Fixed a bug where meta boxes weren't properly showing up on custom post type edit pages
 
 = 1.0 =
 * First publicly released version
-
