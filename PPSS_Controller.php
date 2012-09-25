@@ -70,7 +70,7 @@ class PPSS_Controller extends PW_ModelController
     // make sure the url isn't just white space
     if (preg_match('/\S/', $url) ) {
       $url = trim($url);
-      $url = str_replace( array('%SITE_URL%', '%THEME_URL%'), array(site_url(), get_stylesheet_directory_uri()), $url);
+      $url = str_replace( array('%SITE_URL%', '%HOME_URL%', '%THEME_URL%'), array(site_url(), home_url(), get_stylesheet_directory_uri()), $url);
       $this->_styles[] = array( md5($url), $url );
     }
   }
@@ -92,7 +92,7 @@ class PPSS_Controller extends PW_ModelController
       // remove {dependencies...} from the URL
       $url = preg_replace('/\{[^\}]+\}$/', '', $url);
     
-      $url = str_replace( array('%SITE_URL%', '%THEME_URL%'), array(site_url(), get_stylesheet_directory_uri()), $url);
+      $url = str_replace( array('%SITE_URL%', '%HOME_URL%', '%THEME_URL%'), array(site_url(), home_url(), get_stylesheet_directory_uri()), $url);
       $this->_scripts[] = array( md5($url), $url, $dependencies, false, $in_footer );
     }
   }
@@ -126,7 +126,7 @@ class PPSS_Controller extends PW_ModelController
     ?>
       <p style="margin-top:1em;"><strong>INSTRUCTIONS</strong></p>
       <ul style="color:#666; list-style:square; margin:0 0 0 1.5em;">
-        <li>When entering the URLs, you may use the variables <code>%SITE_URL%</code> and <code>%THEME_URL%</code> for greater flexibility, e.g. <code>%SITE_URL%/scripts/this-post-script.js</code></li>
+        <li>When entering the URLs, you may use the variables <code>%SITE_URL%</code>, <code>%HOME_URL%</code>, and <code>%THEME_URL%</code> for greater flexibility, e.g. <code>%SITE_URL%/scripts/this-post-script.js</code></li>
         <li>To have multiple scripts, put each on on its own line.</li>
         <li>If your script has one or more dependencies, add them as a comma separated list in braces at the end of the URL, e.g.  <code>%SITE_URL%/scripts/code.js{jquery,json2}</code></li>
         <li>Questions? Check out the <a href="http://philipwalton.com/2011/09/25/per-post-scripts-styles/">full documentation</a></li>

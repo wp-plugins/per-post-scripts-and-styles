@@ -1,9 +1,10 @@
 === Per Post Scripts &amp; Styles ===
-Contributors: philipwalton
+Author: philipwalton
+Contributors: philipwalton, davidosomething
 Tags: Javascript, CSS, script, stylesheet, post
 Requires at least: 3.0
-Tested up to: 3.3
-Stable tag: 1.1
+Tested up to: 3.4.2
+Stable tag: 1.2
 
 Properly and safely add specific Javascript and CSS stylesheets to single posts, pages, and custom post types.
 
@@ -13,7 +14,7 @@ Properly and safely add specific Javascript and CSS stylesheets to single posts,
 
 **Features:**
 
-* Dynamic URLs with `%SITE_URL%` and `%THEME_URL%` variables
+* Dynamic URLs with `%HOME_URL%`, `%SITE_URL%`, and `%THEME_URL%` variables
 * Script dependency support as well as script duplication checking
 * The option to load scripts in either the header and footer
 * Attach scripts to posts, pages, and custom post types
@@ -30,13 +31,16 @@ For complete documentation, visit [philipwalton.com](http://philipwalton.com/201
 
 == Changelog ==
 
+= 1.2 =
+* Add support for THEME_URL
+
 = 1.1 =
-* Added the ability to include a footer script block
-* Added support for WordPress 3.3
-* Added support for child themes
+* Add the ability to include a footer script block
+* Add support for WordPress 3.3
+* Add support for child themes
 
 = 1.0.1 =
-* Fixed a bug where meta boxes weren't properly showing up on custom post type edit pages
+* Fix a bug where meta boxes weren't properly showing up on custom post type edit pages
 
 = 1.0 =
 * First publicly released version
